@@ -1,0 +1,19 @@
+Loading /root/nlp/sbt/bin/sbt-launch-lib.bash
+[0m[[33mwarn[0m] [0mThe global sbt directory is now versioned and is located at /root/.sbt/0.13.[0m
+[0m[[33mwarn[0m] [0m  You are seeing this warning because there is global configuration in /root/.sbt but not in /root/.sbt/0.13.[0m
+[0m[[33mwarn[0m] [0m  The global sbt directory may be changed via the sbt.global.base system property.[0m
+[0m[[0minfo[0m] [0mSet current project to a0 (in build file:/root/nlp/src/main/scala/nlp/a0/)[0m
+[0m[[0minfo[0m] [0mCompiling 1 Scala source to /root/nlp/src/main/scala/nlp/a0/target/scala-2.10/classes...[0m
+[0m[[33mwarn[0m] [0m/root/nlp/src/main/scala/nlp/a0/WordFreqFreq.scala:101: patterns after a variable pattern cannot match (SLS 8.1.1)[0m
+[0m[[33mwarn[0m] [0m				case file => file[0m
+[0m[[33mwarn[0m] [0m				     ^[0m
+[0m[[33mwarn[0m] [0m/root/nlp/src/main/scala/nlp/a0/WordFreqFreq.scala:102: unreachable code due to variable pattern 'file' on line 101[0m
+[0m[[33mwarn[0m] [0m				case "" => sys.error("You didn't put a file")[0m
+[0m[[33mwarn[0m] [0m				                    ^[0m
+[0m[[33mwarn[0m] [0m/root/nlp/src/main/scala/nlp/a0/WordFreqFreq.scala:103: unreachable code due to variable pattern 'file' on line 101[0m
+[0m[[33mwarn[0m] [0m				case _ => sys.error("You put too many files")		[0m
+[0m[[33mwarn[0m] [0m				                   ^[0m
+[0m[[33mwarn[0m] [0mthree warnings found[0m
+[0m[[0minfo[0m] [0mRunning nlp.a0.WordFreqFreq mytext.txt[0m
+1331 words appears 1 times
+[0m[[32msuccess[0m] [0mTotal time: 9 s, completed Sep 5, 2013 10:06:21 PM[0m

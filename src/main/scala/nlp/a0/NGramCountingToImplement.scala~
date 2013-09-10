@@ -1,0 +1,11 @@
+package nlp.a0
+
+trait NGramCountingToImplement {
+
+  /**
+   * Given a vector of tokens, return a mapping from ngrams 
+   * to their counts.
+   */
+  def countNGrams(tokens: Vector[String]): Map[Vector[String], Int]
+
+}

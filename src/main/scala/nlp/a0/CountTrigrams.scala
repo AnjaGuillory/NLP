@@ -43,8 +43,9 @@ object CountTrigrams {
 
 		val ngram = new NGramCounting(3).countNGrams(vectText)
 		val nGramMap = ngram.toSeq.sortWith(_._2 > _._2)
-
-		nGramMap foreach {case (key, value) => println(key.mkString(" ") + " 	" + value)}
+		var i = 0
+		for((key,value) <- nGramMap if i != 10) {println(key.mkString(" ") + " 	" + value); i = i + 1;}
+		//nGramMap foreach {case (key, value) => println(key.mkString(" ") + " 	" + value)}
 
 		
 	}

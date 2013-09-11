@@ -1,13 +1,12 @@
 package nlp.a0
 
 import scala.io.Source
-import java.io._
 import scala.util.matching.Regex
 import java.util.Arrays.sort
 
 object WordCount {
 	
-	def countWords(file: File) = {
+	def countWords(file: String) = {
 		//Create a string from your file
 		val source = Source.fromFile(file)
 		val lines = source.mkString
@@ -73,7 +72,7 @@ object WordCount {
 	}
 
 
-	def stopWords(file: File, nFile: File) = {
+	def stopWords(file: String, nFile: String) = {
 		//Create a string from your file
 		val source = Source.fromFile(file)
 		val lines = source.mkString
@@ -163,27 +162,27 @@ object WordCount {
 			if(args(1) == "--stopwords")
 			{
 				//Make sure your file is existing file
-				val file: File = args(0) /*match {
+				val file: String = args(0) match {
 				case file => file
 				case "" => sys.error("You didn't put a file")
 				case _ => sys.error("You put too many files")
-				}*/
+				}
 				
-				val nFile: File = args(2) /*match {
+				val nFile: String = args(2) match {
 					case nFile => nFile
 					case "" => sys.error("You didn't put a file")
 					case _ => sys.error("You put too many files")
-				}*/
+				}
 				stopWords(file, nFile)
 			}
 		}
 		else	{
 			//Make sure your file is existing file
-			val file: File = args(0) /*match {
-				case file => file
+			val file: String = args(0) match {
+				case file => args(0)
 				case "" => sys.error("You didn't put a file")
 				case _ => sys.error("You put too many files")		
-				}*/
+				}
 		
 				countWords(file)
 		}

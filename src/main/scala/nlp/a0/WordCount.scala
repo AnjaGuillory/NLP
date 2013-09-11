@@ -163,13 +163,13 @@ object WordCount {
 			{
 				//Make sure your file is existing file
 				val file: String = args(0) match {
-				case file => file
+				case file => args(0)
 				case "" => sys.error("You didn't put a file")
 				case _ => sys.error("You put too many files")
 				}
 				
 				val nFile: String = args(2) match {
-					case nFile => nFile
+					case nFile => args(2)
 					case "" => sys.error("You didn't put a file")
 					case _ => sys.error("You put too many files")
 				}
@@ -179,7 +179,7 @@ object WordCount {
 		else	{
 			//Make sure your file is existing file
 			val file: String = args(0) match {
-				case file => file
+				case file => args(0)
 				case "" => sys.error("You didn't put a file")
 				case _ => sys.error("You put too many files")		
 				}

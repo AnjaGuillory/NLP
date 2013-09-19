@@ -5,7 +5,7 @@ class ProbabilityDistribution[B] (c: Map[B,Int]) extends ProbabilityDistribution
 	def apply(x: B): Double = {
 		val count = c(x)
 		var total = 0.0
-		//c foreach { case (k,v) => total = total + v}
+		c foreach { case (k,v) => total = total + v}
 		count/total
 	}
 

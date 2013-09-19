@@ -1,0 +1,49 @@
+package nlp.a1
+
+import scala.io.Source
+import nlp.a1.ProbabilityDistribution
+import nlp.a1.CountFeatures
+
+object FeatureFileAsDistributions extends FeatureFileAsDistributionsToImplement {
+	def fromFile(filename: String): (Set[String], ProbabilityDistributionToImplement[String], Map[String, ConditionalProbabilityDistributionToImplement[String, String]]) = {
+
+		val file: String = filename match {
+				case file => filename
+				case "" => sys.error("You didn't put a file")
+				case _ => sys.error("You put too many files")		
+				}
+
+		val textfile = Source.fromFile(file).getLines()
+		
+		val countFeats = CountFeatures.countfeats(file)//makes vector of (label,feature,value) triples
+
+		
+		//get labels
+		var arr = new Array[String](0)
+		for(i <- 0 to countFeats.length-1)
+		{
+			val label = countFeats(i)
+			arr = arr ++ Array(label._1)
+		}
+		val labels = Set() ++ arr
+
+		//get label PD
+		val pLabelMap = (labels.map{case (label) => label -> (arr count (_ == label))}).toMap
+
+		val pLabel = new ProbabilityDistribution[String](pLabelMap)
+
+
+		//get pFeatureValueGivenLabelByFeature
+		val pFeatureValueGivenLabelByFeature = countFeats.groupBy(_._2).map{ 
+			case (feature, groupedByFeature) => feature -> new ConditionalProbabilityDistribution[String,String](
+				groupedByFeature.groupBy(_._1).map{
+					case (label, groupedByLabel) => label -> new ProbabilityDistribution[String](groupedByLabel.groupBy(_._3).map { case(value, groupedByValue) =>
+						value -> groupedByValue.size})})}
+
+		//val myMap = new nlp.a1.ConditionalProbabilityDistribution[String,String](Map("hello" -> pLabel))
+		//val pFeatureValueGivenLabelByFeature = scala.collection.immutable.Map[String, ConditionalProbabilityDistribution[String, String]]()
+
+		(labels, pLabel, pFeatureValueGivenLabelByFeature)
+		
+	}	
+}

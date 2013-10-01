@@ -1,0 +1,7 @@
+package nlp.a2
+
+trait NaiveBayesTrainerToImplement[Label,Feature,Value] {
+
+	def train(instances: Vector[(Label, Vector[(Feature Value)])]): NaiveBayesModelToImplement[Label, Feature, Value]
+
+}

@@ -1,0 +1,7 @@
+package nlp.a2
+
+import nlp.a1.ProbabilityDistributionToImplement
+import nlp.a1.ConditionalProbabilityDistributionToImplement
+import com.typesafe.scalalogging.log4j._
+import nlpclass.NaiveBayesModelToImplement
+

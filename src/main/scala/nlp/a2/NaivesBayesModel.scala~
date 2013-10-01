@@ -1,0 +1,15 @@
+package nlp.a2
+
+import nlp.a2.ProbabilityDistribution
+import nlp.a2.ConditionalProbabilityDistribution
+
+class NaiveBayesModel[Label,Feature,Value](
+	labels: Set[Label],
+	pLabel: ProbabilityDistributionToImplement[Label],
+	pValue: Map[Feature, ConditionalProbabilityDistributionToImplement[Label, Value]])
+	extends nlp.a2.NaiveBayesModelToImplement[Label,Feature,Value] {
+
+	def predict(features: Vector[(Feature, Value)]): Label = {
+		
+	}
+}

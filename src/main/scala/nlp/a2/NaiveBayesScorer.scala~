@@ -1,0 +1,43 @@
+package nlp.a2 
+
+object NaiveBayesScorer extends NaiveBayesScorerToImplement {
+	
+	def score[Label, Feature, Value](
+  	  naiveBayesModel: NaiveBayesModelToImplement[Label, Feature, Value],
+  	  testInstances: Vector[(Label, Vector[(Feature, Value)])],
+   	  positiveLabel: Label) = {
+		
+		var TP = 0.0
+		var TN = 0.0
+		var FP = 0.0
+		var FN = 0.0 
+
+		 for ((label, pairs) <- testInstances)
+		   {
+			println(pairs)
+			val prediction = naiveBayesModel.predict(pairs)
+			//println(prediction)
+			if(prediction == label)	
+				if(label == positiveLabel)
+					TP += 1.0
+				else
+					TN +=1.0
+			else
+				if(prediction == positiveLabel)
+					FP += 1.0
+				else
+					FN += 1.0
+		   }
+
+		val accuracy = ((TP + TN)/(TP+TN+FP+FN))*100
+		val precision = (TP/(TP+FP))*100
+		val recall = (TP/(FN+TP))*100
+		val F1 = 2*(precision*recall)/(precision + recall)
+
+		println("accuracy = " + accuracy)
+		println("precision (" + positiveLabel + ") = " + precision)
+		println("recall (" + positiveLabel + ") = " + recall)
+		println("F1 = " + F1)
+
+	}
+}

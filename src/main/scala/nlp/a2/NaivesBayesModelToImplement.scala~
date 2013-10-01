@@ -1,0 +1,5 @@
+package nlp.a2
+
+trait NaivesBayesModelToImplement[Label,Feature,Value] {
+	def predict(features : Vector[(Feature,Value)]): Label
+} 

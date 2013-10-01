@@ -1,0 +1,24 @@
+package nlp.a2
+
+class UnsmoothedNaiveBayesModelTrainer[Label,Feature,Value] extends NaiveBayesTrainerToImplement[Label,Feature,Value] {
+/*
+	def train(instances: Vector[(Label, Vector[(Feature Value)])]): NaiveBayesModelToImplement[Label, Feature, Value] = {
+		/*val labels = {
+			var someset = new 
+Set() 
+			for(i <- 0 to instances.length-1)	
+			{
+				someset = someset ++ Set(instances(i)._1)
+			}
+		}
+
+		val pLabel = new ProbabilityDistribution[Label](instances.groupBy(_._1).map{ case (label, groupedByLabel) => label -> groupedByLabel.size})
+
+		val pValue = instances.groupBy((_._2)._1).map{ case (feature, groupedByFeature) => feature -> ConditionalProbabilityDistribution[Label,Value](groupedByFeature.groupBy(_._1).map{ case (label, groupedByLabel) => label -> ProbabilityDistribution[Value](groupedByLabel((_._2)._2).map{ case (value groupedByValue) => value -> groupedByValue.size})})}
+
+	val nbm = new NaiveBayesModel[Label,Feature,Value](labels, pLabel, pValue)
+	
+	nbm*/
+	
+	}*/
+}

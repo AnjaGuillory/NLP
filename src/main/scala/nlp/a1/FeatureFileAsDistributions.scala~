@@ -37,7 +37,7 @@ object FeatureFileAsDistributions extends FeatureFileAsDistributionsToImplement 
 		val pFeatureValueGivenLabelByFeature = countFeats.groupBy(_._2).map{ 
 			case (feature, groupedByFeature) => feature -> new ConditionalProbabilityDistribution[String,String](
 				groupedByFeature.groupBy(_._1).map{
-					case (label, groupedByLabel) => label -> new ProbabilityDistribution[String](groupedByLabel.groupBy(_._3).map { case(value, groupedByValue)
+					case (label, groupedByLabel) => label -> new ProbabilityDistribution[String](groupedByLabel.groupBy(_._3).map { case(value, groupedByValue) =>
 						value -> groupedByValue.size})})}
 
 		//val myMap = new nlp.a1.ConditionalProbabilityDistribution[String,String](Map("hello" -> pLabel))

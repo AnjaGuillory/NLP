@@ -3,7 +3,7 @@ package nlp.a1
 import scala.io.Source
 import nlp.a1.ProbabilityDistribution
 import nlp.a1.CountFeatures
-
+import nlpclass._
 object FeatureFileAsDistributions extends FeatureFileAsDistributionsToImplement {
 	def fromFile(filename: String): (Set[String], ProbabilityDistributionToImplement[String], Map[String, ConditionalProbabilityDistributionToImplement[String, String]]) = {
 

@@ -1,12 +1,15 @@
 package nlp.a1
+import nlpclass._
 
-class ProbabilityDistribution[B] (c: Map[B,Int]) extends ProbabilityDistributionToImplement[B] {
+class ProbabilityDistribution[B] (c: Map[B,Int], lambda: Double = 0.0) extends ProbabilityDistributionToImplement[B] {
 
 	def apply(x: B): Double = {
-		val count = c(x)
+		var count = c.getOrElse(x,1)*1.0
+		if(count == 0)
+			count = count + lambda
 		var total = 0.0
-		//c foreach { case (k,v) => total = total + v}
-		count/total
+		c foreach { case (k,v) => total = total + v}
+		count/(total+(lambda*c.size))
 	}
 
 	def sample: B = {
@@ -19,7 +22,7 @@ class ProbabilityDistribution[B] (c: Map[B,Int]) extends ProbabilityDistribution
 			if(sum > r) 
 				return k
 		}
-		sys.err("Could not return")
+		sys.error("Could not return")
 	}
 }
 

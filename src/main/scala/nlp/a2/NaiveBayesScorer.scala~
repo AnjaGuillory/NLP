@@ -14,7 +14,7 @@ object NaiveBayesScorer extends NaiveBayesScorerToImplement {
 
 		 for ((label, pairs) <- testInstances)
 		   {
-			println(pairs)
+			//println(pairs)
 			val prediction = naiveBayesModel.predict(pairs)
 			//println(prediction)
 			if(prediction == label)	
@@ -23,7 +23,7 @@ object NaiveBayesScorer extends NaiveBayesScorerToImplement {
 				else
 					TN +=1.0
 			else
-				if(prediction == positiveLabel)
+				if(label == positiveLabel)
 					FP += 1.0
 				else
 					FN += 1.0

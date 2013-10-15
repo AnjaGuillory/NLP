@@ -2,11 +2,10 @@ package nlp.a1
 
 import nlp.a1.ProbabilityDistribution
 import nlpclass._
-class ConditionalProbabilityDistribution[A,B] (c: Map[A, ProbabilityDistribution[B]]) extends ConditionalProbabilityDistributionToImplement[A,B] {
+class ConditionalProbabilityDistribution[A,B] (c: Map[A, ProbabilityDistribution[B]])extends ConditionalProbabilityDistributionToImplement[A,B] {
 
 	def apply(x: B, given: A): Double = {
-		
-		(c(given)).getOrElse(x,1)
+		(c.getOrElse(given,default))(x)
 	}
 
 	def sample(given: A): B = {

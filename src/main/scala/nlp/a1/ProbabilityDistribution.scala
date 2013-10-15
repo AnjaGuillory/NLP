@@ -3,13 +3,13 @@ import nlpclass._
 
 class ProbabilityDistribution[B] (c: Map[B,Int], lambda: Double = 0.0) extends ProbabilityDistributionToImplement[B] {
 
+	var map = scala.collection.mutable.Map() ++ c
 	var total = 0.0
 	c foreach { case (k,v) => total = total + v}
+
 	def apply(x: B): Double = {
-		var count = c.getOrElse(x,1)*1.0
-		if(count == 0)
-			count = count + lambda
-		count/(total+(lambda*c.size))
+		var count = map(x)
+		count/total
 	}
 
 	def sample: B = {

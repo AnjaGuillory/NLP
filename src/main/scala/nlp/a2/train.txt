@@ -12,3 +12,4 @@ Outlook=Sunny,Temperature=Mild,Humidity=Normal,Wind=Strong,Yes
 Outlook=Overcast,Temperature=Mild,Humidity=High,Wind=Strong,Yes
 Outlook=Overcast,Temperature=Hot,Humidity=Normal,Wind=Weak,Yes
 Outlook=Rain,Temperature=Mild,Humidity=High,Wind=Strong,No
+

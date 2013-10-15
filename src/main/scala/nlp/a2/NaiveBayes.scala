@@ -81,17 +81,19 @@ object NaiveBayes {
 			{
 				val info = line.split(",")
 				val label = info(info.length-1)
+				if(label != ""){
 				//println(label)
 				var pairs = new Array[(String, String)](0)
 				for(i <- 0 to info.length-2)
 				{
 					val fv = info(i)
 					val pair = fv.split("=")
+					//println(" " + (pair(0),pair(1)))
 					pairs = pairs ++ Array((pair(0),pair(1)))
 				}
 
 				val vectPairs = Vector() ++ pairs
-				labelPairs = labelPairs ++ Array((label, vectPairs))
+				labelPairs = labelPairs ++ Array((label, vectPairs))}
 				
 			}
 			

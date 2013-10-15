@@ -21,7 +21,7 @@ resolvers ++= Seq(
 "dhg snapshot repo" at "http://www.cs.utexas.edu/~dhg/maven-repository/snapshots"
 )
 
-libraryDependencies += "com.utcompling" % "nlpclass-fall2013_2.10" % "0004" changing()
+libraryDependencies += "com.utcompling" % "nlpclass-fall2013_2.10" % "0005" changing()
  
 seq(SbtStartScript.startScriptForClassesSettings: _*)
  

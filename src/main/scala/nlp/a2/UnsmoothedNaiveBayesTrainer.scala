@@ -8,15 +8,15 @@ class UnsmoothedNaiveBayesTrainer[Label,Feature,Value]/*(featExt: FeatureExtende
 
 	def train(instances: Vector[(Label, Vector[(Feature, Value)])]): NaiveBayesModelToImplement[Label, Feature, Value] = {
 		val labels = {
-			var someset = Set[Label]() 
+			var someset = Vector[Label]() 
 			for(i <- 0 to instances.length-1)	
 			{
-				someset = someset ++ Set(instances(i)._1)
+				someset = someset ++ Vector(instances(i)._1)
 			}
 			
-			someset
+			someset.toSet
 		}
-		
+		println(labels)
 
 		//tabunn double ni kaware? (groupedByLabel.size: Double)?
 		val pLabel = new ProbabilityDistribution[Label](instances.groupBy(_._1).map{ case (label, groupedByLabel) => label -> groupedByLabel.size})

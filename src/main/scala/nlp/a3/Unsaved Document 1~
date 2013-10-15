@@ -1,0 +1,19 @@
+package nlp.a3
+
+import nlp.a1.ConditionalProbabilityDistribution
+import nlpclass.NgramModelToImplement
+
+class NgramModel(
+	val n: Int,
+	ngramProbs: ConditionalProbabilityDistribution[Vector[String], String])
+	extends NgramModelToImplement {
+	
+	def sentenceProb(sentenceTokens: Vector[String]): Double = {
+		1.0
+	}
+
+	def generate(): Vector[String] = {
+		Vector("Hello")
+	}
+}
+

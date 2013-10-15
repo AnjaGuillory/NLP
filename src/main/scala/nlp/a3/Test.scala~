@@ -1,0 +1,38 @@
+package nlp.a3
+
+object Test {
+	def main(args: Array[String]) = {
+		
+/*Vector(
+	Vector(the, dog, runs, .), 
+	Vector(the, dog, walks, .), 
+	Vector(the, man, walks, .), 
+	Vector(a, man, walks, the, dog, .), 
+	Vector(the, cat, walks, .), 
+	Vector(the, dog, chases, the, cat, .))
+*/
+
+val data =
+  Vector(
+    "the dog runs .",
+    "the dog walks .",
+    "the man walks .",
+    "a man walks the dog .",
+    "the cat walks .",
+    "the dog chases the cat .")
+    .map(_.split("\\s+").toVector)
+
+
+val ngt = new UnsmoothedNgramModelTrainer(2)
+val ngm = ngt.train(data)
+
+val p1 = ngm.sentenceProb("the cat walks .".split("\\s+").toVector)
+println(f"$p1%.4f  ${math.exp(p1)}%.4f")  // -2.4159  0.0893
+/*
+val p2 = ngm.sentenceProb("the cat walks the dog .".split("\\s+").toVector)
+println(f"$p2%.4f  ${math.exp(p2)}%.4f")  // -5.4604  0.0043
+
+val p3 = ngm.sentenceProb("the cat runs.".split("\\s+").toVector)
+println(f"$p3%.4f  ${math.exp(p3)}%.4f")  // NaN  Na*/
+	}
+}

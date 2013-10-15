@@ -1,0 +1,60 @@
+package nlp.a3
+
+import nlpclass.NgramModelTrainerToImplement
+import nlpclass.NgramModelToImplement
+
+class UnsmoothedNgramModelTrainer(n: Int) extends NgramModelTrainerToImplement {
+	def train(tokenizedSentences: Vector[Vector[String]]): NgramModelToImplement = {
+
+		//vector is vector of sentences!
+		//create CPD where each n-1 vector points to a word at n that points to a int
+		// cpd(map[Vector[String], PD(Map[String, Int])])
+		val starttags = {
+			var tags = Vector[String]()
+			for(i <- 0 to n-2)
+			{
+				tags = tags ++ Vector("<s>")
+			}
+			tags
+		}
+
+		val taggedSentences = {
+			var tagged = Vector[Vector[String]]() 
+			for(i <- 0 to tokenizedSentences.length-1)
+			{
+				tagged = tagged ++ Vector(starttags ++ tokenizedSentences(i) ++ Vector("</s>"))
+			}	
+			tagged
+		}
+		
+
+
+		val mainDistr = {
+			var mainmap = Map[Vector[String], NgramProbDistr[String]]()
+			for(i <- 0 to tokenizedSentences.length-1)
+			{
+				val sentence = Vector() ++ tokenizedSentences(i).sliding(n)
+				for(j <- 0 to sentence.length-1)
+				{
+					val gram = sentence(j)
+					//println(gram.last)
+					mainmap = mainmap ++ (sentence.groupBy(gram.take(n-1)).map{case (condWords, groupByCondWords) => condWords -> new NgramProbDistr[String](groupByCondWords.groupBy(gram.last).map { case (word, count) => word -> groupByCondWords.size})})
+				}
+			}
+			mainmap
+		}
+
+
+		//val mainDistr = tokenizedSentences.groupBy(_.take(n-1)).map{ case (condWords,groupedBycondWords) => condWords -> new NgramProbDistr[String](tokenizedSentences.groupBy(_(n)).map { case (word, groupedByWord) => word -> groupedByWord.size})}
+		
+		//mainDistr foreach {case (word, condWords) => {condWords foreach {case (cond, count) => println(cond + " " + count)} }}
+
+		val defDistr = tokenizedSentences.flatten.groupBy(word => word).map{case (word, groupedByWord) => word -> groupedByWord.size}
+
+		val cpd = new NgramCondProbDistr[Vector[String],String](mainDistr, new NgramProbDistr[String](defDistr))
+
+		val ngm = new NgramModel(n, cpd)
+		ngm
+
+	}
+}

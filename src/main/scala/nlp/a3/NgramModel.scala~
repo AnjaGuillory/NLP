@@ -1,0 +1,41 @@
+package nlp.a3
+
+import nlpclass.NgramModelToImplement
+import scala.math._
+
+class NgramModel(
+	val n: Int,
+	ngramProbs: NgramCondProbDistr[Vector[String], String])
+	extends NgramModelToImplement {
+	
+	def sentenceProb(sentenceTokens: Vector[String]): Double = {
+		val sentence = appendS(sentenceTokens)
+		val tokens = Vector() ++ sentence.sliding(n)
+		val probability = {
+			var totalProb = 0.0
+			for(i <- 0 to tokens.length-1) {
+				val gram = tokens(i)
+				val word = gram.last
+				val condWords = gram.dropRight(1)
+				totalProb = totalProb + math.log(ngramProbs(word,condWords))
+			}
+			totalProb
+		}
+		probability
+		
+	}
+
+	def generate(): Vector[String] = {
+		Vector("Hello")
+	}
+
+	def appendS(strings: Vector[String]): Vector[String] = {
+		var starts = Vector[String]()
+		for(i <- 0 to n-2)
+		{
+			starts = starts ++ Vector("<s>")
+		}	
+		starts ++ strings ++ Vector("</s>")
+	}
+}
+

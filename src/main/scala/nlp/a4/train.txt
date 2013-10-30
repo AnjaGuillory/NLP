@@ -1,0 +1,6 @@
+the|D man|N walks|V the|D dog|N
+the|D dog|N runs|V
+the|D dog|N walks|V
+the|D man|N walks|V
+a|D man|N saw|V the|D dog|N
+the|D cat|N walks|V
